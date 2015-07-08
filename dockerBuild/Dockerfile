@@ -71,8 +71,8 @@ RUN git clone git@git.oschina.net:icecream/eova.git
 
 RUN cd eova/
 
-# configure the container to run jenkins, mapping container port 8080 to that host port
+# configure the container to run eova, mapping container port 80 to that host port
 ENTRYPOINT ["mvn", "test"]
-EXPOSE 8080
+EXPOSE 80
 
 CMD [""]
