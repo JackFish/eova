@@ -4,7 +4,7 @@
 # git 1.9.1
 
 # extend the most recent long term support Ubuntu version
-FROM ubuntu:latest
+FROM ubuntu:14.04
 
 MAINTAINER jack "askfish@gmail.com"
 
