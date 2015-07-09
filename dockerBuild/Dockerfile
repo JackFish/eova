@@ -56,7 +56,7 @@ ENV PATH $JAVA_HOME/bin:$PATH
 RUN update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 && update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 20000
 
 # Clone the conf files into the docker container
-RUN git clone https://docker-builder:eova1234@github.com/JackFish/eova.git /root/eova
+RUN git clone -b docker-h2 https://docker-builder:eova1234@git.oschina.net/icecream/eova.git /root/eova
 
 #build eova
 RUN mvn -f /root/eova package
