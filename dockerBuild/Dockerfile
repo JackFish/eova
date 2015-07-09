@@ -1,4 +1,4 @@
-﻿# Ubuntu 14.04 LTS
+# Ubuntu 14.04 LTS
 # Oracle Java 1.8.0_11 64 bit
 # Maven 3.3.3
 # git 1.9.1
@@ -55,24 +55,14 @@ ENV PATH $JAVA_HOME/bin:$PATH
 # configure symbolic links for the java and javac executables
 RUN update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 && update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 20000
 
-# Make ssh dir
-RUN mkdir /root/.ssh/
-
-# Copy over private key, and set permissions
-ADD id_rsa /root/.ssh/id_rsa
-
-# Create known_hosts
-RUN touch /root/.ssh/known_hosts
-# Add bitbuckets key
-RUN ssh-keyscan git.oschina.net >> /root/.ssh/known_hosts
-
 # Clone the conf files into the docker container
-RUN git clone git@git.oschina.net:icecream/eova.git
+RUN git clone https://docker-builder:eova1234@git.oschina.net/icecream/eova.git /root/eova
 
-RUN cd eova/
+#build eova
+RUN mvn -f /root/eova package
 
 # configure the container to run eova, mapping container port 80 to that host port
-ENTRYPOINT ["mvn", "test"]
+ENTRYPOINT mvn -f /root/eova jetty:run-war
 EXPOSE 80
 
 CMD [""]
