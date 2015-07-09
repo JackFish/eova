@@ -62,7 +62,7 @@ RUN git clone -b docker-h2 https://docker-builder:eova1234@git.oschina.net/icecr
 RUN mvn -f /root/eova package
 
 # configure the container to run eova, mapping container port 80 to that host port
-ENTRYPOINT mvn -f /root/eova jetty:run-war
+ENTRYPOINT mvn -f /root/eova test
 EXPOSE 80
 
 CMD [""]
